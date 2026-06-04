@@ -63,9 +63,16 @@ During deployment I configured my home router to direct DNS traffic to a Raspber
 ```
 ## DHCP Reservation
 
-To prevent future connectivity issues caused by changing DHCP assignments, a DHCP reservation was created on the router. This ensured the Raspberry Pi consistently received the same IP address and remained accessible for DNS services and administration.
+A DHCP reservation was created to ensure the Raspberry Pi consistently receives the same IP address, preventing connectivity issues caused by changing DHCP assignments.
 
-[Image Here]
+![DHCP reservation](screenshots/DHCP-reservation.png)
+
+## DNS
+
+The router was configured to distribute the Pi-hole host (192.168.0.201) as the primary DNS server for all devices on the network. DHCP remained enabled on the router, while the Pi-hole device was placed outside the DHCP address pool to maintain a consistent address assignment.
+
+![DNS config](screenshots/DNS-config.png)
+
 ## Lessons Learned
 - DNS changes can affect access to network resources if configured incorrectly.
 - DHCP can assign a new IP address unless a reservation or static configuration is used.
