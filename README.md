@@ -42,7 +42,7 @@ The completed Pi-hole deployment is running on a Raspberry Pi 5 and provides net
 
 ## Network Diagram
 
-During deployment I configured my home router to direct DNS traffic to a Raspberry Pi running pi-hole. Devices received their network configuration through DHCP and bagan sending DNS requests to Pi-hole. The result is nework-wide ad and domain filtering.
+During deployment I configured my home router to direct DNS traffic to a Raspberry Pi running Pi-hole. Devices received their network configuration through DHCP and began sending DNS requests to Pi-hole. The result is network-wide ad and domain filtering.
 ```text
              Internet
                  │
@@ -70,13 +70,13 @@ A DHCP reservation was created to ensure the Raspberry Pi consistently receives 
 
 ## DNS
 
-The router was configured to distribute the Pi-hole host (192.168.0.201) as the primary DNS server for all devices on the network. DHCP remained enabled on the router, while the Pi-hole device was placed outside the DHCP address pool to maintain a consistent address assignment.
+The router was configured to distribute the Pi-hole host (192.168.0.201) as the primary DNS server for all devices on the network. DHCP remained enabled on the router, while the Pi-hole device was assigned an address outside the DHCP pool to help maintain a consistent IP address.
 
 <img src="screenshots/DNS-config.png" width="700">
 
 ## Troubleshooting & Resolution
 
-The updated DNS triggered a hard reset of the router. The Pi-hole administration interface became inaccessible. The following steps were used to identify and resolve the issue.
+Following DNS configuration changes, the router unexpectedly reset and the Pi-hole administration interface became inaccessible. The following steps were used to identify and resolve the issue.
 
 ### 1. Initial Issue Identified
 
@@ -103,14 +103,7 @@ Reviewing active devices on the router revealed that the Raspberry Pi had obtain
 - Router device lists are valuable for locating hosts that are no longer reachable at expected addresses.
 - DHCP reservations help prevent unexpected address changes and improve service reliability.
 
-## Lessons Learned
-- DNS changes can affect access to network resources if configured incorrectly.
-- DHCP can assign a new IP address unless a reservation or static configuration is used.
-- Router dashboards are useful for identifying device IP changes.
-- A simple home lab can create real troubleshooting experience.
-
 ## Next Steps
-- Add a DHCP reservation for the Raspberry Pi
 - Identify unknown devices using nmap
 - Improve network diagram
 - Explore Unbound for recursive DNS
