@@ -34,7 +34,11 @@ The Raspberry Pi was originally expected to use `192.168.0.201`, but it later ap
 - Troubleshooting connectivity issues
 
 ## Screenshots
-_Add screenshots here._
+## Final Working Environment
+
+The completed Pi-hole deployment is running on a Raspberry Pi 5 and provides network-wide DNS filtering for 13 client devices. At the time of this screenshot, Pi-hole had processed over 42,000 DNS queries and blocked more than 5,000 requests.
+
+![Pi-hole Dashboard](screenshots/2026-06-04 123841.png)
 
 ## Network Diagram
 _Add draw.io diagram here._
