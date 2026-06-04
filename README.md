@@ -38,11 +38,34 @@ The Raspberry Pi was originally expected to use `192.168.0.201`, but it later ap
 
 The completed Pi-hole deployment is running on a Raspberry Pi 5 and provides network-wide DNS filtering for 13 client devices. At the time of this screenshot, Pi-hole had processed over 42,000 DNS queries and blocked more than 5,000 requests.
 
-![Pi-hole Dashboard](screenshots/2026-06-04 123841.png)
+![Pi-hole Dashboard](screenshots/pihole-dashboard.png)
 
 ## Network Diagram
-_Add draw.io diagram here._
 
+During deployment I configured my home router to direct DNS traffic to a Raspberry Pi running pi-hole. Devices received their network configuration through DHCP and bagan sending DNS requests to Pi-hole. The result is nework-wide ad and domain filtering.
+```text
+             Internet
+                 │
+                 ▼
+        ┌────────────────┐
+        │ Home Router    │
+        │ 192.168.0.1    │
+        └────────────────┘
+                 │
+      ┌──────────┴──────────┐
+      │                     │
+      ▼                     ▼
+┌──────────────┐    ┌────────────────┐
+│ Raspberry Pi │    │ Client Devices │
+│ Pi-hole      │    │ PCs, Phones,   │
+│ 192.168.0.201│    │ TV, Xbox       │
+└──────────────┘    └────────────────┘
+```
+## DHCP Reservation
+
+To prevent future connectivity issues caused by changing DHCP assignments, a DHCP reservation was created on the router. This ensured the Raspberry Pi consistently received the same IP address and remained accessible for DNS services and administration.
+
+[Image Here]
 ## Lessons Learned
 - DNS changes can affect access to network resources if configured incorrectly.
 - DHCP can assign a new IP address unless a reservation or static configuration is used.
